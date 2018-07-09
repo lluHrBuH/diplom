@@ -86,5 +86,8 @@ def plotAllMetric(X_train, y_train, X_test, y_test, min_n = 2, max_n = 15):
         ax_recall.plot(n, recall,alpha=0.6,label=algo.name,  linewidth=2)
     ax_recall.legend(loc='best')
     ax_precision.legend(loc='best')
-    plt.show()
+
+    fig_precision.savefig('precision.png', dpi=600)
+    fig_recall.savefig('recall.png', dpi=600)
+    #plt.show()
 

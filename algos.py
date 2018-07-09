@@ -43,10 +43,10 @@ algosTest = {
         'constructor':KDTree,
         'args':[[10, 20, 40, 50]]
     },
-    'KGraph':{
-        'constructor':KGraph,
-        'args':[[1, 2, 3, 4, 5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100], {'reverse': -1}]
-    },
+ #   'KGraph':{
+ #       'constructor':KGraph,
+ #       'args':[[1, 2, 3, 4, 5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100], {'reverse': -1}]
+ #   },
     'LOPQ':{
         'constructor':LOPQ,
         'args':[[4, 8, 16]]

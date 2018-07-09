@@ -5,7 +5,7 @@ import sklearn.neighbors
 import sklearn.preprocessing
 import hdidx
 import os
-import pykgraph
+#import pykgraph
 from scipy.spatial.distance import pdist as scipy_pdist
 from lopq import LOPQModel, LOPQSearcher
 from n2 import HnswIndex
@@ -141,30 +141,30 @@ class KDTree(BaseANN):
     def query(self, v, n):
         dist, ind = self._tree.query([v], k=n)
         return ind[0]
-
-class KGraph(BaseANN):
-    def __init__(self, P, index_params):
-        self.name = 'KGraph(P=%d)' % (P)
-        self._P = P
-        self._index_params = index_params
-    def fit(self, X):
-        if X.dtype != numpy.float32:
-            X = X.astype(numpy.float32)
-        self._kgraph = pykgraph.KGraph(X, "euclidean")
-        path = os.path.join(INDEX_DIR, 'kgraph-index-euclidean')
-        if os.path.exists(path):
-            self._kgraph.load(path)
-        else:
-            self._kgraph.build(**self._index_params)
-            if not os.path.exists(INDEX_DIR):
-              os.makedirs(INDEX_DIR)
-            self._kgraph.save(path)
-
-    def query(self, v, n):
-        if v.dtype != numpy.float32:
-            v = v.astype(numpy.float32)
-        result = self._kgraph.search(numpy.array([v]), K=n, threads=1, P=self._P)
-        return result[0]
+#
+# class KGraph(BaseANN):
+#     def __init__(self, P, index_params):
+#         self.name = 'KGraph(P=%d)' % (P)
+#         self._P = P
+#         self._index_params = index_params
+#     def fit(self, X):
+#         if X.dtype != numpy.float32:
+#             X = X.astype(numpy.float32)
+#         self._kgraph = pykgraph.KGraph(X, "euclidean")
+#         path = os.path.join(INDEX_DIR, 'kgraph-index-euclidean')
+#         if os.path.exists(path):
+#             self._kgraph.load(path)
+#         else:
+#             self._kgraph.build(**self._index_params)
+#             if not os.path.exists(INDEX_DIR):
+#               os.makedirs(INDEX_DIR)
+#             self._kgraph.save(path)
+#
+#     def query(self, v, n):
+#         if v.dtype != numpy.float32:
+#             v = v.astype(numpy.float32)
+#         result = self._kgraph.search(numpy.array([v]), K=n, threads=1, P=self._P)
+#         return result[0]
 
 
 class LOPQ(BaseANN):
