@@ -1,31 +1,20 @@
-from algos import algosProd, algosTest
 import numpy as np
-import time
-from sklearn import metrics
+from sklearn.model_selection import train_test_split
+from searcher import Searcher
+from plot import plotAllMetric
 
-def initProd(X, y, algo='hnsw(nmslib)'):
-    print('Start init')
-    ann = algosProd[algo]
-    ann.fitClasses(X, y)
-    ann.fit(X)
-    print('init done')
-    return ann
 
 
 X_train = np.load('X_train.npy')
 y_train = np.load('y_train.npy')
 X_test = np.load('X_test.npy')
 y_test = np.load('y_test.npy')
-ann = initProd(X_train, y_train)
 
-start=time.time()
-y_pred = np.zeros(y_test.shape)
-for idx in range(0,len(X_test)-1):
-    y_pred[idx] = ann.predict(X_test[idx], n=30)
 
-print('Precision:',
-      metrics.precision_score(y_test, y_pred, average='macro'),
-      ' Recall:',
-      metrics.recall_score(y_test, y_pred, average='micro'))
+#X = np.load('./data_vggface/embeddings.npy')
+#y = np.load('./data_vggface/labels.npy')
 
-print('Time per iter', (time.time() - start) / float(len(X_test)))
+#X_train, X_test, y_train, y_test = train_test_split(
+#     X, y, test_size=0.33, random_state=42)
+
+plotAllMetric(X_train, y_train, X_test, y_test)
