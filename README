@@ -7,4 +7,4 @@ Create synthetic dataset:
 python prepare.py
 
 Run:
-python main.py
+MPLBACKEND=Agg python main.py
