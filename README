@@ -1,0 +1,10 @@
+Install:
+chmod +x install.sh
+sudo -H ./install.sh
+
+
+Create synthetic dataset:
+python prepare.py
+
+Run:
+python main.py

@@ -1,4 +1,4 @@
-sudo apt-get install -y git  libboost-all-dev cmake
+sudo apt-get install -y git  libboost-all-dev cmake python-tk
 
 pip install pybind11 cython numpy sklearn matplotlib scipy
 
