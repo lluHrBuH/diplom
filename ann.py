@@ -88,7 +88,7 @@ class BruteForceBLAS(BaseANN):
         self.lengths = numpy.ascontiguousarray(lens, dtype=self._precision)
 
     def query(self, v, n):
-        return map(lambda index, _: index, self.query_with_distances(v, n))
+        return map(lambda (index, _): index, self.query_with_distances(v, n))
     popcount = []
     for i in range(256):
       popcount.append(bin(i).count("1"))
@@ -108,7 +108,7 @@ class FLANN(BaseANN):
         self.name = 'FLANN(target_precision=%f)' % target_precision
 
     def fit(self, X):
-        self._flann = pyflann.FLANN(target_precision=self._target_precision, algorithm='autotuned', log_level='info')
+        self._flann = pyflann.FLANN(target_precision=self._target_precision, algorithm="autotuned", log_level='info')
         self._flann.build_index(X)
 
     def query(self, v, n):
