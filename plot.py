@@ -82,8 +82,8 @@ def plotAllMetric(X_train, y_train, X_test, y_test, min_n = 2, max_n = 15):
     for searcher in algos:
         print('Start algo test:', searcher.name)
         (precision, recall) = getNeighborMetric(searcher, X_test, y_test, min_n, max_n)
-        ax_precision.plot(n, precision,alpha=0.6,label=algo.name,  linewidth=2)
-        ax_recall.plot(n, recall,alpha=0.6,label=algo.name,  linewidth=2)
+        ax_precision.plot(n, precision,alpha=0.6,label=searcher.name,  linewidth=2)
+        ax_recall.plot(n, recall,alpha=0.6,label=searcher.name,  linewidth=2)
     ax_recall.legend(loc='best')
     ax_precision.legend(loc='best')
 
