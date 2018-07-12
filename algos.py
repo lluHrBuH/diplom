@@ -2,12 +2,12 @@ from ann import *
 
 algosProd = {
     'Annoy':Annoy(200, 1000),
-    'BruteForce':BruteForce(),
-    'BruteForceBLAS':BruteForceBLAS(),
+    #'BruteForce':BruteForce(),
+    #'BruteForceBLAS':BruteForceBLAS(),
     'FLANN':FLANN(0.95),
-    'Hdidx':Hdidx(16),
+    #'Hdidx':Hdidx(16),
     'KDTree':KDTree(200),
-    #'KGraph':KGraph(32,{'reverse': -1}),
+  #  'KGraph':KGraph(32,{'reverse': -1}),
     'LOPQ':LOPQ(64),
     'N2':N2(64),
     'hnsw(nmslib)':NmslibReuseIndex(

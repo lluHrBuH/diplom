@@ -42,11 +42,11 @@ def plotAllFreq(X_train, y_train, X_test, y_test, min_n = 2, max_n = 15):
     :return: nothing
     '''
     fig_precision, ax_precision = plt.subplots()
-    ax_precision.set(xlabel='Item per second', ylabel='Precision',
+    ax_precision.set(ylabel='Item per second', xlabel='Precision',
                     title='Precision / Item per second(1/sec)')
     ax_precision.grid()
     fig_recall, ax_recall = plt.subplots()
-    ax_recall.set(xlabel='Item per second', ylabel='Recall',
+    ax_recall.set(ylabel='Item per second', xlabel='Recall',
                   title='Recall / Item per second (1/sec)')
     ax_recall.grid()
 
@@ -61,11 +61,12 @@ def plotAllFreq(X_train, y_train, X_test, y_test, min_n = 2, max_n = 15):
     for searcher in algos:
         print('Start algo test:', searcher.name)
         (precision, recall, freq) = getNeighborFreq(searcher, X_test, y_test, min_n, max_n)
-        ax_precision.plot(freq, precision,alpha=0.6,label=searcher.name,  linewidth=2)
-        ax_recall.plot(freq, recall,alpha=0.6,label=searcher.name,  linewidth=2)
+        ax_precision.plot(precision, freq, '-',alpha=0.6,label=searcher.name,  linewidth=2,  ms=5, mew=1, lw=2)
+        ax_recall.plot(recall, freq, '-', alpha=0.6,label=searcher.name,  linewidth=2 ,  ms=5, mew=1, lw=2 )
     ax_recall.legend(loc='best')
     ax_precision.legend(loc='best')
-
+    ax_precision.grid(b=True, which='major', color='0.65',linestyle='-')
+    ax_recall.grid(b=True, which='major', color='0.65',linestyle='-')
     fig_precision.savefig('precision_time.png', dpi=600)
     fig_recall.savefig('recall_time.png', dpi=600)
     #plt.show()
