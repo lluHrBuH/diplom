@@ -27,7 +27,7 @@ def getNeighborFreq( searcher, X_test, y_test, minN = 2, maxN = 10 ):
             y_pred[idx] = searcher.predict(X_test[idx], n=n_i)
         precision[n_i - minN] = metrics.precision_score(y_test, y_pred, average='macro')
         recall[n_i - minN] = metrics.recall_score(y_test, y_pred, average='micro')
-        frequency[n_i-minN] = float(len(X_test)) / float(time.time() - start)
+        frequency[n_i-minN] = int(float(len(X_test)) / float(time.time() - start))
     return (precision, recall, frequency)
 
 def plotAllFreq(X_train, y_train, X_test, y_test, min_n = 2, max_n = 15):
